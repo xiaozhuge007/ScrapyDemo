@@ -10,14 +10,18 @@ class DyttSpider(CrawlSpider):
     allowed_domains = ['www.dytt8.net']
     start_urls = ['http://www.dytt8.net']
 
+    header = {
+
+    }
+
     rules = (
         Rule(LinkExtractor(allow=r'gndy/'), callback='parse_item', follow=True),
     )
 
     def parse_item(self, response):
         i = DyttItem()
-        i['name'] = response.xpath('//div[@class="title_all"]/h1/font/text()').extract()
-        # i['down'] = response.xpath('//div[@id="Zoom"]/span/p/a').extract()
-        i['down'] = response.css('div#Zoom span p a::attr("href")').extract()
-        print(i['down'])
+        i['name'] = response.xpath('//div[@class="title_all"]/h1/font/text()').extract()[0]
+        # i['down'] = response.xpath("//div[@id='Zoom']/span/p/a/@href").extract()
+        i['down'] = response.xpath("//table/tbody/tr/td/a/@href").extract()[0]
+        print(i['name'] + "---" + i['down'])
         return i

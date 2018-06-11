@@ -16,11 +16,12 @@ class DyttPipeline(object):
         return item
 
     def save_dytt(self, item):
-        for i in range(len(item['name'])):
-            name = item['name'][i]
-            down = item['down'][i]
-            print(name)
-            print(down)
+        # for i in range(len(item['name'])):
+        #     name = item['name'][i]
+        #     down = item['down'][i]
+        #     print(name)
+        #     print(down)
+        pass
 
     def save_dangdang(self, item):
         # 连接配置信息
