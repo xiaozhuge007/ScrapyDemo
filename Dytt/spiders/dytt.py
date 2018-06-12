@@ -20,8 +20,7 @@ class DyttSpider(CrawlSpider):
 
     def parse_item(self, response):
         i = DyttItem()
-        i['name'] = response.xpath('//div[@class="title_all"]/h1/font/text()').extract()[0]
+        i['name'] = response.xpath('//div[@class="title_all"]/h1/font/text()').extract()
         # i['down'] = response.xpath("//div[@id='Zoom']/span/p/a/@href").extract()
-        i['down'] = response.xpath("//table/tbody/tr/td/a/@href").extract()[0]
-        print(i['name'] + "---" + i['down'])
+        i['down'] = response.xpath("//table/tbody/tr/td/a/@href").extract()
         return i
